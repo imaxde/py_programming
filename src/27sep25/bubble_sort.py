@@ -5,7 +5,6 @@ def bubble_sort(iterable):
             e1, e2 = iterable[position], iterable[position + 1]
             if e1 > e2:
                 iterable[position], iterable[position + 1] = e2, e1
-            print(iterable)
     return iterable
 
 bubble_sort([3, 1, 9, 8, 11, 6])
