@@ -1,0 +1,62 @@
+[project]
+name = "py-programming"
+version = "0.1.0"
+description = "Homeworks"
+readme = "README.md"
+requires-python = ">=3.13.7"
+dependencies = []
+
+[tool.ruff]
+exclude = [
+    ".idea",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+line-length = 121
+indent-width = 4
+target-version = "py313"
+
+[tool.ruff.lint]
+extend-select = [
+    "F",        # Правила Pyflakes
+    "W",        # Предупреждения PyCodeStyle
+    "E",        # Ошибки PyCodeStyle
+    "I",        # Правильно сортировать импорты
+    "N",        # Нейминг
+    "UP",       # Предупреждать, если что-то можно изменить из-за новых версий Python
+    "C4",       # Ловить неправильное использование comprehensions, dict, list и т.д.
+    "FA",       # Применять from __future__ import annotations
+    "ISC",      # Хорошее использование конкатенации строк
+    "ICN",      # Использовать общие соглашения об импорте
+    "RET",      # Хорошие практики возврата
+    "SIM",      # Общие правила упрощения
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
