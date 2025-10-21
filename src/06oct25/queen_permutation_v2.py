@@ -1,5 +1,5 @@
 def queen_permutations(n):
-    def recursion(row, board):
+    def helper(row, board):
         # если все ферзи расставлены найдено корректное решение
         if row == n:
             return 1
