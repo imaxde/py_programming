@@ -1,24 +1,33 @@
 def queen_permutations(n):
-    count = 0
-    # текущий ряд, позиции ферзей
-    stack = [(0, [])]
-    # ряды могут быть только уникальные, поэтому, если все взяли, то все
-    while stack:
-        row, queens = stack.pop()
+    def backtrack(row, columns, diag1, diag2):
+        """
+        один шаг подсчета расстановок
+        :param row: номер ряда, на котором мы фокусируемся
+        :param columns: занятые колнки в двоичном числе. 0 - свободно, 1 - занято
+        :param diag1: двоичное число диагонали в обозначении ряд + колнка
+        :param diag2: двоичное число диагонали ряд - колонка
+        :return: количество расстановок с текущего ряда
+        """
         if row == n:
-            count += 1
-            continue
-        # пробуем поставить ферзя в каждую колонку
-        for column in range(n):
-            # проверяем конфликты
-            correct = True
-            for r, c in enumerate(queens):
-                if c == column or abs(c - column) == abs(r - row):
-                    correct = False
-                    break
-            if correct:
-                stack.append((row + 1, queens + [column]))
-    return count
+            return 1
+        count = 0
+        # число, обозначающее занятые позиции. в начале это n единиц
+        all_positions = (1 << n) - 1
+        # объединяем все недоступные поля (которые биты двоичного числа)
+        attacked = columns | diag1 | diag2
+        # убираем из всех единиц недоступные и получаем доступные поля
+        available = all_positions & ~attacked
+        # выбираем свободные позиции пока такие есть
+        while available:
+            # самый правый в свободных бит (- меняет все 1 на 0 и дабавляет 1)
+            cell = available & -available
+            # убираем его из свободных
+            available -= cell
+            # ищем расстановки с уже занятой этой клеткой для следующего ряда
+            count += backtrack(row + 1, columns | cell, (diag1 | cell) << 1, (diag2 | cell) >> 1)
+        return count
+    # вначале доска пустая
+    return backtrack(0, 0, 0, 0)
 
-print(queen_permutations(7))
-
+if __name__ == "__main__":
+    print(queen_permutations(7))
