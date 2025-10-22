@@ -15,11 +15,11 @@ def queen_permutations(n):
             if correct:
                 board[row] = column
                 # добавляем к счетчику все комбинции ферзя со следующего ряда
-                count += recursion(row + 1, board)
+                count += helper(row + 1, board)
         return count
 
     # начинаем с первого ряда и пустой доски
-    return recursion(0, [-1] * n)
+    return helper(0, [-1] * n)
 
 print(queen_permutations(7))
 
