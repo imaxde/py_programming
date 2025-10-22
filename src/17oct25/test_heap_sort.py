@@ -1,6 +1,8 @@
-from heap_sort import heap_sort
-import pytest
 import random
+
+import pytest
+from heap_sort import heap_sort
+
 
 def test_simple():
     assert heap_sort([3, 2, 1, 5, 10, 8]) == [1, 2, 3, 5, 8, 10]
@@ -44,8 +46,7 @@ def test_empty_list():
 
 @pytest.fixture()
 def random_int_list():
-    random_list = random.sample(range(-200, 200), 150)
-    return random_list
+    return random.sample(range(-200, 200), 150)
 
 def test_property_python_sort(random_int_list):
     a = sorted(random_int_list)
