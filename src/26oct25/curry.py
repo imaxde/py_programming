@@ -1,5 +1,6 @@
 from inspect import getfullargspec
 
+
 def curry(function, arg_count):
     original_arguments = getfullargspec(function)
     # т.к. нужно поддерживать только позиционные аргументы, любое отклонение будет вызывать ошибку
