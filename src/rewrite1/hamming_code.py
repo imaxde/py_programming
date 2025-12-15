@@ -1,4 +1,5 @@
-from math import log2, ceil
+from math import ceil, log2
+
 
 def hamming_encrypt(data):
     x_count = 0

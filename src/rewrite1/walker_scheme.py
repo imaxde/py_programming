@@ -1,5 +1,6 @@
 from random import randint
 
+
 class SchemeWalker:
     def __init__(self, distribution_law: list[tuple]):
         self.n = len(distribution_law)
@@ -38,5 +39,4 @@ class SchemeWalker:
         row = self.table[int(x * self.n)]
         if x <= row["barrier"]:
             return row["donor"]
-        else:
-            return row["recepient"]
+        return row["recepient"]
