@@ -5,12 +5,11 @@ class SchemeWalker:
     def __init__(self, distribution_law: list[tuple]):
         self.n = len(distribution_law)
         self.table = [None] * self.n
-        similar_p = 1 / self.n
         small, big = [], []
         names = [name for name, i in distribution_law]
         probs = [p * self.n for i, p in distribution_law]
         for i, p in enumerate(probs):
-            if p < similar_p:
+            if p < 1:
                 small.append(i)
             else:
                 big.append(i)
@@ -33,6 +32,7 @@ class SchemeWalker:
                 "recepient": names[i],
                 "barrier": 1
             }
+        print(self.table)
 
     def get_random(self):
         x = randint(0, 1)
