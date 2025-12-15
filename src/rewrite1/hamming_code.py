@@ -25,5 +25,17 @@ def hamming_encrypt(data):
             row_number += 1
     return y
 
-
-
+def check_decrypt(data):
+    length = len(data)
+    x_count = ceil(log2(length + 1))
+    matrix = [bin(i)[2:].zfill(x_count) for i in range(1, length + 1)]
+    x_bits = []
+    for row in range(x_count):
+        s = 0
+        for j in range(length):
+            s += data[j] * int(matrix[j][x_count - row - 1])
+        x_bits.append(s % 2)
+    error_pos = 0
+    for k, bit in enumerate(x_bits):
+        error_pos += bit * (2 ** k)
+    return error_pos
