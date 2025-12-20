@@ -1,4 +1,4 @@
-from haffman import encode, decode
+from haffman import decode, encode
 
 
 def bits_to_bytes(bits: str) -> tuple[bytes, int]:
@@ -17,7 +17,7 @@ def bytes_to_bits(data: bytes, padding: int) -> str:
 
 
 def compress_file(source_path: str, destination_path: str) -> None:
-    with open(source_path, "r", encoding="utf-8") as f:
+    with open(source_path, encoding="utf-8") as f:
         text = f.read()
     encoded, table = encode(text)
     # сохраняем таблицу, зашифрованную в utf8, в заголовок файла

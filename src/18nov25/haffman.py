@@ -1,6 +1,5 @@
-from collections import Counter
 import heapq
-from typing import Dict, Tuple
+from collections import Counter
 
 
 class Node:
@@ -14,7 +13,7 @@ class Node:
         return self.freq < other.freq
 
 
-def build_tree(freq: Dict[str, int]) -> Node:
+def build_tree(freq: dict[str, int]) -> Node:
     heap = [Node(f, c) for c, f in freq.items()]
     heapq.heapify(heap)
     while len(heap) > 1:
@@ -24,7 +23,7 @@ def build_tree(freq: Dict[str, int]) -> Node:
     return heap[0]
 
 
-def build_table(node: Node, prefix="", table=None) -> Dict[str, str]:
+def build_table(node: Node, prefix="", table=None) -> dict[str, str]:
     if table is None:
         table = {}
     if node.char is not None:
@@ -35,7 +34,7 @@ def build_table(node: Node, prefix="", table=None) -> Dict[str, str]:
     return table
 
 
-def encode(msg: str) -> Tuple[str, Dict[str, str]]:
+def encode(msg: str) -> tuple[str, dict[str, str]]:
     # считаем частоту появления подстроки
     freq = Counter(msg)
     tree = build_tree(freq)
@@ -44,7 +43,7 @@ def encode(msg: str) -> Tuple[str, Dict[str, str]]:
     return encoded, table
 
 
-def decode(encoded: str, table: Dict[str, str]) -> str:
+def decode(encoded: str, table: dict[str, str]) -> str:
     reverse = {v: k for k, v in table.items()}
     result = []
     buf = ""
